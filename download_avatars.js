@@ -1,7 +1,10 @@
 var request = require('request');
 var secrets = require('./secrets');
 
-var args = process.argv[2];
+var repoOwner = process.argv[2];
+var repoName = process.argv[3];
+
+// var args = process.argv[2](repoOwner, repoName);
 
 //general function that accepts repository owner and name, with a callback function
 function getRepoContributors(repoOwner, repoName, cb) {
@@ -22,9 +25,9 @@ function getRepoContributors(repoOwner, repoName, cb) {
 }
 
 // calling function and loops through each contributor
-getRepoContributors("jquery", "jquery", function (err, contributors) {
+getRepoContributors(repoOwner, repoName, function (err, contributors) {
     contributors.forEach(function (contributor) {
-        downloadImageByURL(contributor.avatar_url, "avatars/" + contributor.login)
+        downloadImageByURL(contributor.avatar_url, "avatars2/" + contributor.login)
     });
 });
 
